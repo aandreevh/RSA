@@ -21,11 +21,11 @@ public final class TestUtils {
             for(int i=0;i<eString.length();i++){
                 if(eString.charAt(i) != truth.charAt(i)){
                     err("Validation number miss at "+i);
-                    break;
+                    return i;
                 }
             };
         }catch (Exception ex){
-            System.err.println(ex);
+            err(ex);
         }
 
         return -1;

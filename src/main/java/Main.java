@@ -11,6 +11,7 @@ import static util.MonitorUtil.*;
 public class Main {
 
     public static void main(String... args) throws Exception{
+
         try(Context c = Context.generateFromArgs(args)){
             setQuiet(c.isQuiet());
             Calculator calc = new Calculator(c);

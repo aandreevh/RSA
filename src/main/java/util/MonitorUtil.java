@@ -1,11 +1,5 @@
 package util;
 
-import general.Context;
-import org.apfloat.Apfloat;
-
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,11 +19,6 @@ public final class MonitorUtil {
         MonitorUtil.quiet = quiet;
     }
 
-    private static int monitorDepth = 0;
-    public static  int getMonitorDepth(){
-        return monitorDepth;
-    }
-
     public static boolean isQuiet(){
         return  quiet;
     }
@@ -42,8 +31,7 @@ public final class MonitorUtil {
     }
 
     private static String prefix(){
-        String depth = new String(new char[getMonitorDepth()]).replace("\0", "  ");
-       return  "["+(DATE_FORMAT.format(new Date()))+"] "+Thread.currentThread().getName()+":"+depth;
+       return  "["+(DATE_FORMAT.format(new Date()))+"] "+Thread.currentThread().getName()+": ";
     }
 
     public static<T> Supplier<Object> simplify(Runnable sup){
@@ -81,9 +69,7 @@ public final class MonitorUtil {
                                              Consumer<T> OnComplete){
         return a->{
             if(OnStart != null) OnStart.accept(a);
-            monitorDepth++;
             T element = functor.get();
-            monitorDepth--;
             if(OnComplete !=  null) OnComplete.accept(element);
             return element;
         };

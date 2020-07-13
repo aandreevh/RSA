@@ -17,10 +17,10 @@ public class Context implements AutoCloseable{
             Context.DEFAULT_RANGES);
 
     public static final int DEFAULT_THREADS = 1;
-    public static final int DEFAULT_PRECISION = 10000;
+    public static final int DEFAULT_PRECISION = 1000;
     public static final String DEFAULT_OUTFILE = "./result.txt";
     public static final boolean DEFAULT_QUIET = false;
-    public static final int DEFAULT_VERTICAL = 1;
+    public static final int DEFAULT_VERTICAL = 1024;
     private static final boolean DEFAULT_RANGES=false;
     private static final String DEFAULT_TEST=null;
 
@@ -129,8 +129,7 @@ public class Context implements AutoCloseable{
     }
 
     public int getVertical(){
-        return this.vertical* getThreads();
-    }
+        return this.vertical; }
 
     public boolean isShowRanges(){
         return  this.showRanges;
